@@ -30,8 +30,8 @@ const ServiceInfo = () => {
     return (
         <div className='mb-36'>
             <div className='text-center mb-16'>
-                <h3 className='text-5'>OUR SERVICES</h3>
-                <h2 className='text-4xl'>Services We Provide</h2>
+                <h3 className='text-5 text-primary font-bold mb-2'>OUR SERVICES</h3>
+                <h2 className='text-4xl font-semibold'>Services We Provide</h2>
 
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
