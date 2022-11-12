@@ -21,7 +21,7 @@ const Testimonial = () => {
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14'>
 
 
-                <div className='shadow-lg p-7 rounded-lg'>
+                <div className='shadow-lg p-7 rounded-lg hover:bg-stone-100'>
 
 
                     <div>
@@ -46,7 +46,7 @@ const Testimonial = () => {
                     </div>
                 </div>
 
-                <div className='shadow-lg p-7 rounded-lg'>
+                <div className='shadow-lg p-7 rounded-lg hover:bg-stone-100'>
 
 
                     <div>
@@ -71,7 +71,7 @@ const Testimonial = () => {
                     </div>
                 </div>
 
-                <div className='shadow-lg p-7 rounded-lg'>
+                <div className='shadow-lg p-7 rounded-lg hover:bg-stone-100'>
 
 
                     <div>
