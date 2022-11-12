@@ -3,7 +3,7 @@ import treathment from '../../../../assets/images/treatment.png';
 
 const OurServiceBanner = () => {
     return (
-        <div className="hero ">
+        <div className="hero mb-20">
             <div className="hero-content flex-col lg:flex-row">
                 <img src={treathment} className="lg:w-1/2 lg:mr-24 rounded-lg shadow-2xl" alt="" />
                 <div>
