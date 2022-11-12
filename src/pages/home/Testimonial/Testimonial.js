@@ -1,5 +1,6 @@
 import React from 'react';
-import authorImg from '../../../assets/images/doctor-small.png'
+import people1 from '../../../assets/images/people1.png';
+import quote from '../../../assets/icons/quote.svg';
 
 const Testimonial = () => {
     return (
@@ -12,7 +13,7 @@ const Testimonial = () => {
                 </div>
 
                 <div>
-                    <img className='w-20' src={authorImg} alt="" />
+                    <img className='w-24 lg:w-48' src={quote} alt="" />
                 </div>
 
             </div>
@@ -32,7 +33,7 @@ const Testimonial = () => {
                         <div className='flex items-center'>
 
                             <div>
-                                <img className='w-14 border border-red-400 rounded-[50%] mr-5' src={authorImg} alt="" />
+                                <img className='w-14 border border-red-400 rounded-[50%] mr-5' src={people1} alt="" />
                             </div>
 
                             <div>
@@ -57,7 +58,7 @@ const Testimonial = () => {
                         <div className='flex items-center'>
 
                             <div>
-                                <img className='w-14 border border-red-400 rounded-[50%] mr-5' src={authorImg} alt="" />
+                                <img className='w-14 border border-red-400 rounded-[50%] mr-5' src={people1} alt="" />
                             </div>
 
                             <div>
@@ -82,7 +83,7 @@ const Testimonial = () => {
                         <div className='flex items-center'>
 
                             <div>
-                                <img className='w-14 border border-red-400 rounded-[50%] mr-5' src={authorImg} alt="" />
+                                <img className='w-14 border border-red-400 rounded-[50%] mr-5' src={people1} alt="" />
                             </div>
 
                             <div>
