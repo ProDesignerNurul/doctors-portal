@@ -1,13 +1,32 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const Login = () => {
 
     const { register, formState: { errors }, handleSubmit } = useForm();
 
+    const { signIn } = useContext(AuthContext);
+    const [loginError, setLoginError] = useState('');
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location.state?.from?.pathname || '/';
+
     const handleLogin = data => {
         console.log(data);
+        setLoginError('');
+        signIn(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                navigate( from, { replace: true})
+            })
+            .catch(err => {
+                console.error(err.message)
+                setLoginError(err.message)
+            });
     }
 
     return (
@@ -41,30 +60,37 @@ const Login = () => {
                 <h2 className="text-xl font-bold text-center">Login</h2>
                 <form onSubmit={handleSubmit(handleLogin)}>
 
-                    
+
                     <div className="form-control w-full max-w-xs">
                         <label className="label">  <span className="label-text">Email</span> </label>
-                        <input type="email" 
-                        {...register("email", {
-                            required: 'Email Is Required'
-                        })}
-                         className="input input-bordered w-full max-w-xs" /> 
-                         {errors.email && <p className='text-red-400' role="alert">{errors.email?.message}</p>}      
+                        <input type="email"
+                            {...register("email", {
+                                required: 'Email Is Required'
+                            })}
+                            className="input input-bordered w-full max-w-xs" />
+                        {errors.email && <p className='text-red-400' role="alert">{errors.email?.message}</p>}
                     </div>
                     <div className="form-control w-full max-w-xs">
                         <label className="label">  <span className="label-text">Password</span> </label>
-                        <input type="password" 
-                        {...register("password", {
-                            required: 'Password Is Required',
-                            minLength: { value: 6, message: 'Password Must Be 6 Charecter'}
-                        })}
-                         className="input input-bordered w-full max-w-xs" />
-                         {errors.password && <p className='text-red-400' role="alert">{errors.password?.message}</p>}             
+                        <input type="password"
+                            {...register("password", {
+                                required: 'Password Is Required',
+                                minLength: { value: 6, message: 'Password Must Be 6 Charecter' }
+                            })}
+                            className="input input-bordered w-full max-w-xs" />
+
+                        {errors.password && <p className='text-red-400' role="alert">{errors.password?.message}</p>}
                     </div>
-                    
+
+                    {
+                        loginError && <p className='text-red-400'> {loginError} </p>
+                    }
+
                     <label className="label">  <span className="label-text">Forgot Password?</span> </label>
                     <input className='btn w-full' value="login" type="submit" />
-                    
+
+
+
                     <p>New to Doctors Portal? <Link className='text-secondary mt-3 mb-4' to="/signup">Create new account</Link></p>
 
                     <div className="divider">OR</div>
