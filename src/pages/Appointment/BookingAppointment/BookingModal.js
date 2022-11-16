@@ -1,10 +1,13 @@
 import { format } from 'date-fns';
-import React from 'react';
+import React, { useContext } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 
 const BookingModal = ({ treatment, setTreatment, selectedDate }) => {
     const { name, slots } = treatment;
+    const { user } = useContext(AuthContext);
+    console.log(user)
 
     const successToast = () => toast("Appointment Successfully !!!");
 
@@ -49,9 +52,9 @@ const BookingModal = ({ treatment, setTreatment, selectedDate }) => {
                                 >{slot}</option>)
                             }
                         </select>
-                        <input name="name" type="text" placeholder="Full Name" className=" mb-6 input input-bordered w-full" />
-                        <input name="email" type="text" placeholder="Email" className=" mb-6 input input-bordered w-full" />
-                        <input name="phone" type="text" placeholder="Phone Number" className=" mb-6 input input-bordered w-full" />
+                        <input name="name" type="text" defaultValue={user?.displayName} disabled placeholder="Full Name" className=" mb-6 input input-bordered w-full" />
+                        <input name="email" type="text" defaultValue={user?.email} disabled placeholder="Email" className=" mb-6 input input-bordered w-full" />
+                        <input name="phone" type="text" defaultValue={user?.phoneNumber} disabled placeholder="Phone Number" className=" mb-6 input input-bordered w-full" />
                         <br />
                         <input onClick={successToast} className='btn w-full' type="submit" value="Submit" />
                         <ToastContainer />

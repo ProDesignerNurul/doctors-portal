@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import React, { useEffect, useState } from 'react';
 import BookingModal from '../BookingAppointment/BookingModal';
@@ -5,15 +6,24 @@ import AppointmentOption from './AppointmentOption';
 
 const AbailableAppointment = ({ selectedDate }) => {
 
-    const [appointmentOption, setAppointmentOption] = useState([]);
+    // const [appointmentOption, setAppointmentOption] = useState([]);
     const [treatment, setTreatment] = useState(null);
 
-    useEffect(() => {
-        fetch('appointmentOption.json')
-            .then(res => res.json())
-            .then(data => setAppointmentOption(data))
-            .catch(err => console.error(err))
-    }, [])
+    const {data: appointmentOption = [] } = useQuery({
+        queryKey: ['appointmentOption'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/appointmentOptions')
+            const data = await res.json();
+            return data;
+        }
+    })
+
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/appointmentOptions')
+    //         .then(res => res.json())
+    //         .then(data => setAppointmentOption(data))
+    //         .catch(err => console.error(err))
+    // }, [])
 
     return (
         <div className='mt-64'>
